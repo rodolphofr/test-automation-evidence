@@ -46,7 +46,7 @@ public class GeneratorEvidenceReport {
 			parameters.put("LOGO_CORPORATION", PROPERTIES_REPORT_CONFIG.getProperty("path.logo.corporation"));
 			parameters.put("LABEL_DATE", report.getDate());
 			parameters.put("LABEL_SCENE", report.getScene());
-			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().result().name());
+			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().getResultStatus());
 			
 			JRDataSource dataSource = new JRBeanCollectionDataSource(EvicenceViewUtils.convertToList(report.getEvidences()));
 			JasperPrint jasperPrint = JasperFillManager.fillReport("report/evidenceReport.jasper", parameters, dataSource);

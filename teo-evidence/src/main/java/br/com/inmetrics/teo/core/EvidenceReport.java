@@ -11,7 +11,7 @@ import br.com.inmetrics.teo.core.result.TestCaseResult;
 public class EvidenceReport {
 
 	private final Date date;
-	private final TestCaseResult testCaseResult = null;
+	private final TestCaseResult testCaseResult;
 	private final String scene;
 	private final List<Evidence> evidences;
 	
@@ -19,6 +19,7 @@ public class EvidenceReport {
 		this.evidences = evidences;
 		this.scene = scene;
 		this.date = date;
+		this.testCaseResult = new TestCaseResult(evidences);
 	}
 
 	public String getScene() {
