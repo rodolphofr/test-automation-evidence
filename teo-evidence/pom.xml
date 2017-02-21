@@ -1,0 +1,43 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>br.com.inmetrics.teo</groupId>
+	<artifactId>teo-evidence</artifactId>
+	<version>1.0.0-SNAPSHOT</version>
+
+	<name>Teo</name>
+	<description>utilidade de geração de evidência utilizando jasper reports.</description>
+
+	<inceptionYear>2017</inceptionYear>
+
+	<developers>
+		<developer>
+			<id>rod</id>
+			<email>rodolrod@inmetrics.com.br / rodolpho.frodrigues@gmail.com</email>
+			<name>Rodolpho Ferreira Rodrigues</name>
+			<roles>
+				<role>Developer/Automation</role>
+			</roles>
+			<organizationUrl>http://www.inmetrics.com.br/</organizationUrl>
+			<organization>Inmetrics</organization>
+		</developer>
+	</developers>
+
+	<properties>
+		<project.build.sourceEnconding>UTF-8</project.build.sourceEnconding>
+		<java.version>1.8</java.version>
+		<jasperreports.version>6.3.1</jasperreports.version>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>${jasperreports.version}</version>
+		</dependency>
+		
+	</dependencies>
+
+</project>

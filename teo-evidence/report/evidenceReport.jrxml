@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="evidenceReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00e54e6f-7e45-4cd9-a957-e6193053f66a">
+	<property name="ireport.zoom" value="1.0000000000000009"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="style_status">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{LABEL_STATUS_CT}.equalsIgnoreCase("Passed"))]]></conditionExpression>
+			<style forecolor="#00AB21"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($P{LABEL_STATUS_CT}.equalsIgnoreCase("Fail"))]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+	</style>
+	<style name="style_step">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[( $F{status}.equalsIgnoreCase("Passed") ? true : false )]]></conditionExpression>
+			<style forecolor="#00FF00"/>
+		</conditionalStyle>
+		<conditionalStyle>
+			<conditionExpression><![CDATA[new Boolean($F{status}.equalsIgnoreCase("Fail"))]]></conditionExpression>
+			<style forecolor="#FF0000"/>
+		</conditionalStyle>
+	</style>
+	<parameter name="LABEL_PROJECT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LABEL_SCENE" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LABEL_FACTORY" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LABEL_COD_PROJECT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LABEL_TESTER" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LABEL_DATE" class="java.util.Date" isForPrompting="false"/>
+	<parameter name="LABEL_STATUS_CT" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="LOGO_CUSTOMER" class="java.lang.String" isForPrompting="false"/>
+	<field name="hour" class="java.lang.String"/>
+	<field name="image" class="java.io.File"/>
+	<field name="description" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="158" splitType="Stretch">
+			<textField>
+				<reportElement x="342" y="56" width="175" height="20" uuid="0c3f203e-0a92-47a3-93e7-4ca800a0352a"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_PROJECT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="110" y="120" width="404" height="22" uuid="dfcc8f14-86be-47d8-948a-cee4397c0696"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_SCENE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="77" width="158" height="20" uuid="0b28e23c-5660-445d-b4cf-86f7d5d10eed"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_FACTORY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="56" width="148" height="19" uuid="7f9ce273-5590-403c-9e24-66ae8ffd0937"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_COD_PROJECT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="110" y="97" width="160" height="20" uuid="78e435b2-3b39-4b81-800e-b9a2c08c7bce"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_TESTER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="true">
+				<reportElement x="341" y="78" width="167" height="18" uuid="702c1c37-6353-412a-9270-b2a65b409d9a"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format($P{LABEL_DATE})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style_status" mode="Opaque" x="342" y="96" width="151" height="20" uuid="e25b0ebe-3a81-489b-9fb4-29ef4241b0ad"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LABEL_STATUS_CT}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="32" y="76" width="76" height="20" uuid="94b9a168-b455-489e-9d95-d050ade8adeb"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Fábrica:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="96" width="45" height="20" uuid="8610bb3a-cbd8-4d8c-8351-0217cf6e3c4c"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Status:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="56" width="48" height="20" uuid="543fd5a3-9049-4255-8ab2-16bb561f9df7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Projeto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="56" width="77" height="20" uuid="3a50b404-de31-44f9-a4c0-342b3b888138"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Cód. Projeto:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="97" width="76" height="20" uuid="c9d0621e-31c7-43a0-b10b-2192f99077eb"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Testador:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="76" width="45" height="20" uuid="33fa01a8-303b-405a-9296-2c30331dfbda"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Data:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="120" width="77" height="22" uuid="bfd81bdb-1e00-4741-bb6a-b0a4d2e93467"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Cenário:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="179" y="12" width="197" height="35" uuid="24aff9dc-33e7-464c-934a-b3ad8f9131e1"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Calibri" size="18" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="true"/>
+				</textElement>
+				<text><![CDATA[Evidência de Teste]]></text>
+			</staticText>
+			<image scaleImage="FillFrame" hAlign="Center" vAlign="Middle">
+				<reportElement mode="Opaque" x="24" y="12" width="103" height="40" uuid="48ca0328-da16-415f-aaeb-2961d29ea9d4"/>
+				<imageExpression><![CDATA[$P{LOGO_CUSTOMER}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="32" y="151" width="482" height="1" uuid="e71ec45d-ec58-477e-9ca8-f37ca3b3adf4"/>
+				<graphicElement>
+					<pen lineWidth="0.9"/>
+				</graphicElement>
+			</line>
+		</band>
+	</title>
+	<detail>
+		<band height="297" splitType="Stretch">
+			<image scaleImage="FillFrame" onErrorType="Icon">
+				<reportElement positionType="FixRelativeToBottom" x="30" y="53" width="486" height="229" isPrintWhenDetailOverflows="true" uuid="0ccb9327-1f22-4341-b696-df157da73bd0"/>
+				<imageExpression><![CDATA[$F{image}]]></imageExpression>
+			</image>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="34" y="16" width="415" height="30" uuid="d36bfc9c-c65e-4ec8-b469-a18213ad43f7"/>
+				<textElement textAlignment="Justified" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="false" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="style_step" mode="Opaque" x="449" y="10" width="76" height="22" forecolor="#000000" uuid="28bfbc7e-5b82-4c2a-a975-95a2c701a14a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="449" y="33" width="76" height="20" forecolor="#2389DD" uuid="68c68c31-3c92-414e-9661-f667a60c289d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Calibri"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{hour}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" x="269" y="282" width="16" height="15" uuid="3de9ee59-03a4-44e7-9cc5-b38ceffea4b9"/>
+				<textElement>
+					<font fontName="Calibri" size="12"/>
+				</textElement>
+				<text><![CDATA[- -]]></text>
+			</staticText>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="43" splitType="Stretch">
+			<textField>
+				<reportElement x="141" y="11" width="135" height="20" uuid="f8f6f390-4a15-4edf-9cb8-98e1aae0c2b3"/>
+				<textElement textAlignment="Right">
+					<font fontName="Calibri" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}+ " /  "]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="279" y="11" width="98" height="20" uuid="192e0629-cfec-42ad-9d7e-2f7c12291ed0"/>
+				<textElement>
+					<font fontName="Calibri" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>
