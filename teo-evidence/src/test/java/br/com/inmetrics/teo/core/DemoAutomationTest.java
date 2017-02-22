@@ -21,7 +21,6 @@ public class DemoAutomationTest {
 
 	private List<Evidence> evidences;
 	private FirefoxDriver driver; 
-	
 	private EvidenceReport newReport;
 	
 	@BeforeEach
@@ -34,10 +33,10 @@ public class DemoAutomationTest {
 	}
 	
 	@Test
-	@DisplayName("Deve acessar página do selenium.org")
+	@DisplayName("Deve acessar página do selenium.org Deve acessar página do selenium.org Deve acessar página do selenium.org Deve acessar página do selenium.org Deve acessar página ")
 	public void deveAcessarPaginaSeleniumOrg(TestInfo info) {
 		newReport.setScene(info.getDisplayName());
-			evidences.add(new Evidence("Acessou página do selenium", EvidenceStatus.FAIL, screenshot(), new Date()));
+		evidences.add(new Evidence("Acessou página do selenium", EvidenceStatus.FAIL, screenshot(), new Date()));
 	}
 	
 	@AfterEach

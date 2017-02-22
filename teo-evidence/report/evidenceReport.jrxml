@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="evidenceReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00e54e6f-7e45-4cd9-a957-e6193053f66a">
-	<property name="ireport.zoom" value="1.0000000000000009"/>
+	<property name="ireport.zoom" value="1.0000000000000033"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<style name="style_status">
@@ -42,65 +42,65 @@
 	<title>
 		<band height="158" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="342" y="56" width="175" height="20" isRemoveLineWhenBlank="true" uuid="0c3f203e-0a92-47a3-93e7-4ca800a0352a"/>
+				<reportElement positionType="FixRelativeToBottom" x="81" y="56" width="195" height="20" isRemoveLineWhenBlank="true" uuid="0c3f203e-0a92-47a3-93e7-4ca800a0352a"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LABEL_PROJECT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement positionType="Float" x="110" y="120" width="404" height="22" isRemoveLineWhenBlank="true" uuid="dfcc8f14-86be-47d8-948a-cee4397c0696"/>
+				<reportElement positionType="FixRelativeToBottom" x="81" y="120" width="433" height="22" isRemoveLineWhenBlank="true" uuid="dfcc8f14-86be-47d8-948a-cee4397c0696"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LABEL_SCENE}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="110" y="77" width="158" height="20" isRemoveLineWhenBlank="true" uuid="0b28e23c-5660-445d-b4cf-86f7d5d10eed"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement positionType="FixRelativeToBottom" x="376" y="78" width="138" height="18" isRemoveLineWhenBlank="true" uuid="0b28e23c-5660-445d-b4cf-86f7d5d10eed"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LABEL_FACTORY}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="110" y="56" width="148" height="19" isRemoveLineWhenBlank="true" uuid="7f9ce273-5590-403c-9e24-66ae8ffd0937"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement positionType="FixRelativeToBottom" x="387" y="56" width="127" height="20" isRemoveLineWhenBlank="true" uuid="7f9ce273-5590-403c-9e24-66ae8ffd0937"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LABEL_COD_PROJECT}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement x="110" y="97" width="160" height="20" isRemoveLineWhenBlank="true" uuid="78e435b2-3b39-4b81-800e-b9a2c08c7bce"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement positionType="FixRelativeToBottom" x="376" y="97" width="138" height="20" isRemoveLineWhenBlank="true" uuid="78e435b2-3b39-4b81-800e-b9a2c08c7bce"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LABEL_TESTER}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
-				<reportElement x="341" y="78" width="167" height="18" isRemoveLineWhenBlank="true" uuid="702c1c37-6353-412a-9270-b2a65b409d9a"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement positionType="FixRelativeToBottom" x="81" y="78" width="149" height="20" isRemoveLineWhenBlank="true" uuid="702c1c37-6353-412a-9270-b2a65b409d9a"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format($P{LABEL_DATE})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="style_status" mode="Opaque" x="342" y="96" width="151" height="20" isRemoveLineWhenBlank="true" uuid="e25b0ebe-3a81-489b-9fb4-29ef4241b0ad"/>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<reportElement style="style_status" positionType="FixRelativeToBottom" mode="Opaque" x="81" y="99" width="149" height="20" isRemoveLineWhenBlank="true" uuid="e25b0ebe-3a81-489b-9fb4-29ef4241b0ad"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{LABEL_STATUS_CT}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="32" y="76" width="76" height="20" isRemoveLineWhenBlank="true" uuid="94b9a168-b455-489e-9d95-d050ade8adeb">
+				<reportElement positionType="FixRelativeToBottom" x="285" y="78" width="63" height="18" isRemoveLineWhenBlank="true" uuid="94b9a168-b455-489e-9d95-d050ade8adeb">
 					<printWhenExpression><![CDATA[$P{LABEL_FACTORY} != null && !$P{LABEL_FACTORY}.isEmpty()]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Fábrica:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="292" y="96" width="45" height="20" isRemoveLineWhenBlank="true" uuid="8610bb3a-cbd8-4d8c-8351-0217cf6e3c4c">
+				<reportElement positionType="FixRelativeToBottom" x="32" y="99" width="49" height="19" isRemoveLineWhenBlank="true" uuid="8610bb3a-cbd8-4d8c-8351-0217cf6e3c4c">
 					<printWhenExpression><![CDATA[$P{LABEL_STATUS_CT} != null && !$P{LABEL_STATUS_CT}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
@@ -109,7 +109,7 @@
 				<text><![CDATA[Status:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="292" y="56" width="48" height="20" isRemoveLineWhenBlank="true" uuid="543fd5a3-9049-4255-8ab2-16bb561f9df7">
+				<reportElement positionType="FixRelativeToBottom" x="32" y="56" width="48" height="20" isRemoveLineWhenBlank="true" uuid="543fd5a3-9049-4255-8ab2-16bb561f9df7">
 					<printWhenExpression><![CDATA[$P{LABEL_PROJECT} != null && !$P{LABEL_PROJECT}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
@@ -118,32 +118,32 @@
 				<text><![CDATA[Projeto:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="32" y="56" width="77" height="20" isRemoveLineWhenBlank="true" uuid="3a50b404-de31-44f9-a4c0-342b3b888138">
+				<reportElement positionType="FixRelativeToBottom" x="285" y="56" width="91" height="20" isRemoveLineWhenBlank="true" uuid="3a50b404-de31-44f9-a4c0-342b3b888138">
 					<printWhenExpression><![CDATA[$P{LABEL_COD_PROJECT} != null && !$P{LABEL_COD_PROJECT}.isEmpty()]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Cód. Projeto:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="32" y="97" width="76" height="20" isRemoveLineWhenBlank="true" uuid="c9d0621e-31c7-43a0-b10b-2192f99077eb">
+				<reportElement positionType="FixRelativeToBottom" x="285" y="98" width="73" height="19" isRemoveLineWhenBlank="true" uuid="c9d0621e-31c7-43a0-b10b-2192f99077eb">
 					<printWhenExpression><![CDATA[$P{LABEL_TESTER} != null && !$P{LABEL_TESTER}.isEmpty()]]></printWhenExpression>
 				</reportElement>
-				<textElement textAlignment="Justified" verticalAlignment="Middle">
+				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Testador:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="292" y="76" width="45" height="20" isRemoveLineWhenBlank="true" uuid="33fa01a8-303b-405a-9296-2c30331dfbda"/>
+				<reportElement positionType="FixRelativeToBottom" x="32" y="79" width="49" height="18" isRemoveLineWhenBlank="true" uuid="33fa01a8-303b-405a-9296-2c30331dfbda"/>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Data:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="32" y="120" width="77" height="22" isRemoveLineWhenBlank="true" uuid="bfd81bdb-1e00-4741-bb6a-b0a4d2e93467">
+				<reportElement positionType="FixRelativeToBottom" x="32" y="120" width="49" height="22" isRemoveLineWhenBlank="true" uuid="bfd81bdb-1e00-4741-bb6a-b0a4d2e93467">
 					<printWhenExpression><![CDATA[$P{LABEL_SCENE} != null && !$P{LABEL_SCENE}.isEmpty()]]></printWhenExpression>
 				</reportElement>
 				<textElement textAlignment="Justified" verticalAlignment="Middle">
@@ -153,7 +153,7 @@
 			</staticText>
 			<staticText>
 				<reportElement x="179" y="12" width="197" height="35" isRemoveLineWhenBlank="true" uuid="24aff9dc-33e7-464c-934a-b3ad8f9131e1"/>
-				<textElement verticalAlignment="Middle">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="18" isBold="true" pdfFontName="Helvetica-Bold" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
 				</textElement>
 				<text><![CDATA[Evidência de Teste]]></text>
