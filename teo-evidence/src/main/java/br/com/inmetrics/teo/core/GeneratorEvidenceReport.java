@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
 
+import org.apache.commons.lang3.StringUtils;
+
 import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 import br.com.inmetrics.teo.utils.EvicenceViewUtils;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -19,13 +21,11 @@ import net.sf.jasperreports.export.Exporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
 
-/**
- * @author Rodolpho F. Rodrigues
- */
 public class GeneratorEvidenceReport {
-
-	private static Properties PROPERTIES_REPORT_CONFIG;
 	
+	private static Properties properties_report_config;
+	private static final String PATH_JR_FILE = "report/evidenceReport.jasper";
+
 	static {
 		initPropertiesReportConfig();
 	}
@@ -35,42 +35,52 @@ public class GeneratorEvidenceReport {
 		
 		try {
 			
-			String destinationEvidence = PROPERTIES_REPORT_CONFIG.getProperty("destination.evidence");
+			String fileExtensionReport = getProperty("file.extension.report");
+			String destinationEvidence = createPathDestinationEvidence(report, fileExtensionReport);
 			
 			Map<String, Object> parameters = new HashMap<String, Object>();
-			parameters.put("LABEL_PROJECT", PROPERTIES_REPORT_CONFIG.getProperty("label.name.project"));
-			parameters.put("LABEL_FACTORY", PROPERTIES_REPORT_CONFIG.getProperty("label.factory"));
-			parameters.put("LABEL_COD_PROJECT", PROPERTIES_REPORT_CONFIG.getProperty("label.cod.project"));
-			parameters.put("LABEL_TESTER", PROPERTIES_REPORT_CONFIG.getProperty("label.tester"));
-			parameters.put("LOGO_CUSTOMER", PROPERTIES_REPORT_CONFIG.getProperty("path.logo.customer"));
-			parameters.put("LOGO_CORPORATION", PROPERTIES_REPORT_CONFIG.getProperty("path.logo.corporation"));
+			parameters.put("LABEL_PROJECT", getProperty("label.name.project"));
+			parameters.put("LABEL_FACTORY", getProperty("label.factory"));
+			parameters.put("LABEL_COD_PROJECT", getProperty("label.cod.project"));
+			parameters.put("LABEL_TESTER", getProperty("label.tester"));
+			parameters.put("LOGO_CUSTOMER", getProperty("path.logo.customer"));
+			parameters.put("LOGO_CORPORATION", getProperty("path.logo.corporation"));
 			parameters.put("LABEL_DATE", report.getDate());
 			parameters.put("LABEL_SCENE", report.getScene());
 			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().getResultStatus());
 			
 			JRDataSource dataSource = new JRBeanCollectionDataSource(EvicenceViewUtils.convertToList(report.getEvidences()));
-			JasperPrint jasperPrint = JasperFillManager.fillReport("report/evidenceReport.jasper", parameters, dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(PATH_JR_FILE, parameters, dataSource);
 			
-			Exporter exporter = JRExporterFactory.getExporterInstance(PROPERTIES_REPORT_CONFIG.getProperty("file.extension.report"));
+			Exporter exporter = JRExporterFactory.getExporterInstance(fileExtensionReport);
 			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));	
 			exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(new FileOutputStream(destinationEvidence)));
 			exporter.exportReport();
 			
 		} catch (JRException e) {
-			throw new GeneratorEvidenceReportException("Alguma exceção ocorreu ao tentar gerar relatório do jasper: " + e.getMessage(), e);
+			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar gerar relatório do jasper: " + e.getMessage(), e);
 		} catch (FileNotFoundException e) {
-			throw new GeneratorEvidenceReportException("Alguma exceção ocorreu ao tentar criar arquivo de evidências: " + e.getMessage(), e);
+			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar criar arquivo de evidências: " + e.getMessage(), e);
 		}
 		
 	}
 	
 	private static void initPropertiesReportConfig() {
-		PROPERTIES_REPORT_CONFIG = new Properties();
+		properties_report_config = new Properties();
 		try {
-			PROPERTIES_REPORT_CONFIG.load(new FileInputStream("reportconfig.properties"));
+			properties_report_config.load(new FileInputStream("reportconfig.properties"));
 		} catch (IOException e) {
 			throw new IllegalStateException("Exceção inesperada ocorreu ao carregar arquivo properties [reportconfig.properties]", e);
 		}
+	}
+	
+	private static String getProperty(String key) {
+		String value = properties_report_config.getProperty(key);
+		return StringUtils.isBlank(value) ? StringUtils.EMPTY : value.trim();
+	}
+	
+	private static String createPathDestinationEvidence(EvidenceReport report, String fileExtensionReport) {
+		return getProperty("custom.destination.evidence") + "/" + report.getScene() + "." + fileExtensionReport;
 	}
 	
 }

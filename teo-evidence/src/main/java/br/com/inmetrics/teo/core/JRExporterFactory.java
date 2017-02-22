@@ -11,7 +11,7 @@ public class JRExporterFactory {
 	@SuppressWarnings("rawtypes")
 	public static Exporter getExporterInstance(String fileExtensionReport) {
 		
-		switch (fileExtensionReport.toLowerCase().trim()) {
+		switch (fileExtensionReport.toLowerCase()) {
 			case "docx":
 				return new JRDocxExporter();
 			case "pdf":
@@ -19,7 +19,8 @@ public class JRExporterFactory {
 			case "html":
 				return new HtmlExporter();
 			default:
-				throw new GeneratorEvidenceReportException("A exteção do arquivo de saída do relatório é inválida");
+				throw new GeneratorEvidenceReportException("A exteção do arquivo de saída do relatório é inválida. "
+						+ "Verique o valor informado no arquivo reportconfig.properties.");
 		}
 		
 	}

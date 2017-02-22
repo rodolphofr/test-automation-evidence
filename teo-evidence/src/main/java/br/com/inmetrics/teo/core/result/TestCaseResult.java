@@ -20,7 +20,7 @@ public class TestCaseResult {
 	}
 
 	public String getResultStatus() {
-		return checkFail() ? Status.FAIL.name() : Status.FAIL.name(); 
+		return checkFail() ? Status.FAIL.name() : Status.PASSED.name(); 
 	}
 	
 }
