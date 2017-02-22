@@ -5,14 +5,12 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.Rule;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestInfo;
 import org.junit.platform.runner.JUnitPlatform;
-import org.junit.rules.TestName;
 import org.junit.runner.RunWith;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
@@ -39,22 +37,7 @@ public class DemoAutomationTest {
 	@DisplayName("Deve acessar página do selenium.org")
 	public void deveAcessarPaginaSeleniumOrg(TestInfo info) {
 		newReport.setScene(info.getDisplayName());
-		try {
-			evidences.add(new Evidence("Acessou página do selenium", true, screenshot(), new Date()));
-		} catch (Exception any) {
-			evidences.add(new Evidence(any.getMessage(), false, screenshot(), new Date()));
-		}
-	}
-	
-	@Test
-	@DisplayName("Deve falhar ao acessar página do selenium.org Deve falhar ao acessar página do selenium.org")
-	public void deveFalharAoAcessarPaginaSeleniumOrg(TestInfo info) {
-		newReport.setScene(info.getDisplayName());
-		try {
-			evidences.add(new Evidence("Acessou página do selenium", true, screenshot(), new Date()));
-		} catch (Exception any) {
-			evidences.add(new Evidence(any.getMessage(), false, screenshot(), new Date()));
-		}
+			evidences.add(new Evidence("Acessou página do selenium", EvidenceStatus.FAIL, screenshot(), new Date()));
 	}
 	
 	@AfterEach

@@ -3,6 +3,7 @@ package br.com.inmetrics.teo.core.result;
 import java.util.List;
 
 import br.com.inmetrics.teo.core.Evidence;
+import br.com.inmetrics.teo.core.EvidenceStatus;
 
 public class TestCaseResult {
 
@@ -14,13 +15,13 @@ public class TestCaseResult {
 	
 	private boolean checkFail() {
 		return evidences.stream()
-						.filter((e) -> e.isStatus() == false)
+						.filter((e) -> e.getEvidenceStatus() == EvidenceStatus.FAIL)
 						.findFirst()
 						.isPresent();
 	}
 
-	public String getResultStatus() {
-		return checkFail() ? Status.FAIL.name() : Status.PASSED.name(); 
+	public TestResult result() {
+		return checkFail() ? TestResult.FAIL : TestResult.PASSED; 
 	}
 	
 }

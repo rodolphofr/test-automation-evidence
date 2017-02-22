@@ -10,18 +10,18 @@ public class Evidence {
 
 	private Date hour;
 	private File image;
-	private boolean status;
+	private EvidenceStatus status;
 	private String description;
 	private String imageBase64;  
 	
-	public Evidence(String description, boolean status, File image, Date hour) {
+	public Evidence(String description, EvidenceStatus status, File image, Date hour) {
 		this.description = description;
 		this.status = status;
 		this.image = image;
 		this.hour = hour;
 	}
 	
-	public Evidence(String description, boolean status, String imageBase64, Date hour) {
+	public Evidence(String description, EvidenceStatus status, String imageBase64, Date hour) {
 		this.description = description;
 		this.status = status;
 		this.imageBase64 = imageBase64;
@@ -32,7 +32,7 @@ public class Evidence {
 		return description;
 	}
 	
-	public boolean isStatus() {
+	public EvidenceStatus getEvidenceStatus() {
 		return status;
 	}
 	

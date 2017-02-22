@@ -1,4 +1,4 @@
-package br.com.inmetrics.teo.core;
+package br.com.inmetrics.teo.core.factory;
 
 import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 import net.sf.jasperreports.engine.export.HtmlExporter;

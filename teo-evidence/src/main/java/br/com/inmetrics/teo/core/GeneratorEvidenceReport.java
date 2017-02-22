@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
 
+import br.com.inmetrics.teo.core.factory.JRExporterFactory;
 import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 import br.com.inmetrics.teo.utils.EvicenceViewUtils;
 import net.sf.jasperreports.engine.JRDataSource;
@@ -47,7 +48,7 @@ public class GeneratorEvidenceReport {
 			parameters.put("LOGO_CORPORATION", getProperty("path.logo.corporation"));
 			parameters.put("LABEL_DATE", report.getDate());
 			parameters.put("LABEL_SCENE", report.getScene());
-			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().getResultStatus());
+			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().result().name());
 			
 			JRDataSource dataSource = new JRBeanCollectionDataSource(EvicenceViewUtils.convertToList(report.getEvidences()));
 			JasperPrint jasperPrint = JasperFillManager.fillReport(PATH_JR_FILE, parameters, dataSource);

@@ -3,8 +3,6 @@ package br.com.inmetrics.teo.core;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
-import br.com.inmetrics.teo.core.result.Status;
-
 public class EvidenceView {
 
 	private Evidence evidence;
@@ -22,7 +20,16 @@ public class EvidenceView {
 	}
 	
 	public String getStatus() {
-		return evidence.isStatus() ? Status.PASSED.name() : Status.FAIL.name();
+		switch (evidence.getEvidenceStatus()) {
+		case FAIL:
+			return EvidenceStatus.FAIL.name(); 
+		case INFO:
+			return EvidenceStatus.PASSED.name();
+		case PASSED:
+			return EvidenceStatus.INFO.name();
+		default:
+			return null;
+		}
 	}
 	
 	public String getHour() {
