@@ -1,21 +1,20 @@
 package br.com.inmetrics.teo.core.factory;
 
+import br.com.inmetrics.teo.core.parse.IExporter;
+import br.com.inmetrics.teo.core.parse.DocxExporter;
+import br.com.inmetrics.teo.core.parse.HtmlExporter;
+import br.com.inmetrics.teo.core.parse.PdfExporter;
 import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
-import net.sf.jasperreports.engine.export.HtmlExporter;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
-import net.sf.jasperreports.export.Exporter;
 
 public class JRExporterFactory {
 
-	@SuppressWarnings("rawtypes")
-	public static Exporter getExporterInstance(String fileExtensionReport) {
+	public static IExporter getExporterInstance(String fileExtensionReport) {
 		
 		switch (fileExtensionReport.toLowerCase()) {
 			case "docx":
-				return new JRDocxExporter();
+				return new DocxExporter();
 			case "pdf":
-				return new JRPdfExporter();
+				return new PdfExporter();
 			case "html":
 				return new HtmlExporter();
 			default:

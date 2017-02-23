@@ -20,8 +20,8 @@ public class TestCaseResult {
 						.isPresent();
 	}
 
-	public TestResult result() {
-		return checkFail() ? TestResult.FAIL : TestResult.PASSED; 
+	public String result() {
+		return checkFail() ? TestResult.FAIL.name() : TestResult.PASSED.name(); 
 	}
 	
 }

@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class DemoAutomationTest {
+public class DemoTest {
 
 	private List<Evidence> evidences;
 	private EvidenceReport newReport;
