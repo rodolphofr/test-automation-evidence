@@ -45,7 +45,7 @@ public class GeneratorEvidenceReport {
 			parameters.put("LABEL_COD_PROJECT", getProperty("label.cod.project"));
 			parameters.put("LABEL_TESTER", getProperty("label.tester"));
 			parameters.put("LOGO_CUSTOMER", getProperty("path.logo.customer"));
-			parameters.put("LOGO_CORPORATION", getProperty("path.logo.corporation"));
+			parameters.put("LOGO_CORPORATION", getProperty("path.logo.company"));
 			parameters.put("LABEL_DATE", report.getDate());
 			parameters.put("LABEL_SCENE", report.getScene());
 			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().result().name());
