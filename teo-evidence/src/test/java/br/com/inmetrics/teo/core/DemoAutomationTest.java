@@ -1,53 +1,45 @@
 package br.com.inmetrics.teo.core;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
-import org.junit.platform.runner.JUnitPlatform;
-import org.junit.runner.RunWith;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-@RunWith(JUnitPlatform.class)
 public class DemoAutomationTest {
 
 	private List<Evidence> evidences;
-	private FirefoxDriver driver; 
 	private EvidenceReport newReport;
+	private FirefoxDriver driver; 
 	
-	@BeforeEach
+	@Rule
+	public TestName testName = new TestName();
+	
+	@Before
 	public void setUp() {
 		System.setProperty("webdriver.gecko.driver", "C:\\driver\\geckodriver.exe");
 		driver = new FirefoxDriver();
 		driver.get("http://www.seleniumhq.org/");
+		
 		evidences = new ArrayList<Evidence>();
 		newReport = new EvidenceReport(evidences, new Date());
 	}
 	
 	@Test
-	@DisplayName("Deve acessar página do selenium.org Deve acessar página do selenium.org Deve acessar página do selenium.org Deve acessar página do selenium.org Deve acessar página ")
-	public void deveAcessarPaginaSeleniumOrg(TestInfo info) {
-		newReport.setScene(info.getDisplayName());
-		evidences.add(new Evidence("Acessou página do selenium", EvidenceStatus.FAIL, screenshot(), new Date()));
+	public void deveAcessarPaginaSeleniumOrg() {
+		newReport.setScene(testName.getMethodName());
+		evidences.add(EvidenceLog.passed("Acessado"));
 	}
 	
-	@AfterEach
+	@After
 	public void tearDown() {
-		GeneratorEvidenceReport.generate(newReport);
-		evidences.clear();
 		driver.quit();
+		GeneratorEvidenceReport.generate(newReport);
 	}
 
-	private File screenshot() {
-		return ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-	}
-	
 }

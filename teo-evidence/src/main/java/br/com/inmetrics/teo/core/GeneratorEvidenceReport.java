@@ -81,7 +81,10 @@ public class GeneratorEvidenceReport {
 	}
 	
 	private static String createPathDestinationEvidence(EvidenceReport report, String fileExtensionReport) {
-		return getProperty("custom.destination.evidence") + "/" + report.getScene() + "." + fileExtensionReport;
+		return getProperty("custom.destination.evidence").concat("/") 
+														 .concat(report.getScene())
+														 .concat(".")
+														 .concat(fileExtensionReport);
 	}
 	
 }
