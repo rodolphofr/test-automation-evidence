@@ -5,18 +5,26 @@ package br.com.inmetrics.teo.core;
 
 import java.util.Date;
 
+import br.com.inmetrics.teo.core.screenshot.Screenshot;
+
 public class EvidenceLog {
 	
-	public static Evidence passed(String description) {
-		return new Evidence(description, EvidenceStatus.PASSED, null, new Date());
+	private Screenshot screenshot;
+
+	public EvidenceLog(Screenshot screenshot) {
+		this.screenshot = screenshot;
 	}
 	
-	public static Evidence fail(String description) {
-		return new Evidence(description, EvidenceStatus.FAIL, null, new Date());
+	public Evidence passed(String description) {
+		return new Evidence(description, EvidenceStatus.PASSED, screenshot.takeAPicture(), new Date());
 	}
 	
-	public static Evidence info(String description) {
-		return new Evidence(description, EvidenceStatus.INFO, null, new Date());
+	public Evidence fail(String description) {
+		return new Evidence(description, EvidenceStatus.FAIL, screenshot.takeAPicture(), new Date());
 	}
 	
+	public Evidence info(String description) {
+		return new Evidence(description, EvidenceStatus.INFO, screenshot.takeAPicture(), new Date());
+	}
+
 }

@@ -33,7 +33,7 @@ public class DemoTest {
 	@Test
 	public void deveAcessarPaginaSeleniumOrg() {
 		newReport.setScene(testName.getMethodName());
-		evidences.add(EvidenceLog.passed("Acessado"));
+		evidences.add(null);
 	}
 	
 	@After

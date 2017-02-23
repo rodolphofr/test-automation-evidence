@@ -59,15 +59,16 @@ public class GeneratorEvidenceReport {
 	public static void generate(EvidenceReport report) {
 		try {
 			
-			String fileExtensionReport = getProperty("file.extension.report");
-			String destinationEvidence = createPathDestinationEvidence(report, fileExtensionReport);
-			OutputStream out = new FileOutputStream(destinationEvidence);
-			IExporter exporter = JRExporterFactory.getExporterInstance(fileExtensionReport);
+			String fileExtension = getProperty("file.extension.report");
+			String destination = createPathDestinationEvidence(report, fileExtension);
+			OutputStream out = new FileOutputStream(destination);
+			IExporter exporter = JRExporterFactory.getExporterInstance(fileExtension);
 			
 			generate(report, out, exporter);
 			
 		} catch (FileNotFoundException e) {
-			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar criar arquivo de evidências: " + e.getMessage(), e);
+			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar criar arquivo de evidências. "
+					+ "Caminho do arquivo pode estar inválido: " + e.getMessage(), e);
 		}
 		
 	}
