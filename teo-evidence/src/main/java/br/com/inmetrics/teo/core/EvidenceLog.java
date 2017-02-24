@@ -6,34 +6,39 @@ package br.com.inmetrics.teo.core;
 import java.io.File;
 import java.util.Date;
 
-import br.com.inmetrics.teo.core.screenshot.AbstractScreenshot;
+import br.com.inmetrics.teo.core.screenshot.AbstractScreenshotConfigurationType;
 
 public class EvidenceLog {
 	
-	private AbstractScreenshot screenshot; 
+	private AbstractScreenshotConfigurationType<?> screenshotConfigurationType; 
 	
-	public EvidenceLog(AbstractScreenshot screenshot) {
-		this.screenshot = screenshot;
+	public EvidenceLog(AbstractScreenshotConfigurationType<?> screenshotConfigurationType) {
+		this.screenshotConfigurationType = screenshotConfigurationType;
 	}
 	
 	public Evidence passed(String description) {
-		return new Evidence(description, EvidenceStatus.PASSED, screenshot.takeAPicture(), new Date());
+		return this.log(description, EvidenceStatus.PASSED);
 	}
 	
 	public Evidence fail(String description) {
-		return new Evidence(description, EvidenceStatus.FAIL, screenshot.takeAPicture(), new Date());
+		return this.log(description, EvidenceStatus.FAIL);
 	}
 	
 	public Evidence info(String description) {
-		return new Evidence(description, EvidenceStatus.INFO, screenshot.takeAPicture(), new Date());
+		return this.log(description, EvidenceStatus.INFO);
 	}
 	
-	private Evidence log(String description, Object screenshot) {
+	private Evidence log(String description, EvidenceStatus status) {
+		Object screenshot = screenshotConfigurationType.takeAPicture();
+		Date hour = new Date();
+		
 		if (screenshot instanceof File) {
-			return new Evidence(description, EvidenceStatus.INFO, (File) screenshot, new Date());
-		} else if (screenshot instanceof String) {
-			return new Evidence(description, EvidenceStatus.INFO, (String) screenshot, new Date()); 
+			return new Evidence(description, status, (File)screenshot, hour);
+		} 
+		if (screenshot instanceof String) {
+			return new Evidence(description, status, (String)screenshot, hour); 
 		}
+		
 		return null;
 	}
 }

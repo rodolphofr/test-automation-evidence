@@ -6,9 +6,9 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 
-public class DefaultScreenshot extends AbstractScreenshot {
+public class SimpleScreenshotConfigurationTypeFile extends AbstractScreenshotConfigurationType<File> {
 
-	public DefaultScreenshot(WebDriver driver) {
+	public SimpleScreenshotConfigurationTypeFile(WebDriver driver) {
 		super(driver);
 	}
 
