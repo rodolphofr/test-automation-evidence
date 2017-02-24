@@ -6,34 +6,36 @@ import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.inmetrics.teo.core.screenshot.Screenshot;
+import br.com.inmetrics.teo.core.screenshot.DefaultScreenshot;
 
 public class DemoTest {
 
 	private List<Evidence> evidences;
 	private EvidenceReport newReport;
-	private FirefoxDriver driver; 
-	private EvidenceLog log;
+	private static EvidenceLog log;
+	private static FirefoxDriver driver; 
 	
 	@Rule
 	public TestName testName = new TestName();
 	
-	@Before
-	public void setUp() {
-		
+	@BeforeClass
+	public static void init() {
 		System.setProperty("webdriver.gecko.driver", "C:\\driver\\geckodriver.exe");
 		driver = new FirefoxDriver();
+		log = new EvidenceLog(new DefaultScreenshot(driver));
+	}
+	
+	@Before
+	public void setUp() {
 		driver.get("http://www.seleniumhq.org/");
-		
 		evidences = new ArrayList<Evidence>();
 		newReport = new EvidenceReport(evidences, new Date());
-		log = new EvidenceLog(new Screenshot(driver));
-		
 	}
 	
 	@Test

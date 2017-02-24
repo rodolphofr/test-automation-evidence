@@ -3,6 +3,8 @@ package br.com.inmetrics.teo.core;
 import java.io.File;
 import java.text.SimpleDateFormat;
 
+import br.com.inmetrics.teo.utils.FileUtils;
+
 public class EvidenceView {
 
 	private Evidence evidence;
@@ -38,6 +40,12 @@ public class EvidenceView {
 	}
 	
 	public File getImage() {
+		String imageBase64 = evidence.getImageBase64();
+		
+		if (imageBase64 != null) {
+			return FileUtils.base64ToTempFile(imageBase64);
+		}
+		
 		return evidence.getImage();
 	}
 	

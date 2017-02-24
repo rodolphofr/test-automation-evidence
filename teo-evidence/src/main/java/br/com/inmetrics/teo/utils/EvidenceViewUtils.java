@@ -9,7 +9,7 @@ import br.com.inmetrics.teo.core.EvidenceView;
 /**
  * @author Rodolpho F. Rodrigues
  */
-public class EvicenceViewUtils {
+public class EvidenceViewUtils {
 
 	public static EvidenceView convertToEvidenceView(Evidence evidence) {
 		return new EvidenceView(evidence);
