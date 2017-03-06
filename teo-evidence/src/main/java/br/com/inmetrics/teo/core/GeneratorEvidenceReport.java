@@ -42,7 +42,7 @@ public class GeneratorEvidenceReport {
 		generate(report, getDefaultOutputFile(report.getScene()), getExporter());
 	}
 
-	public static void generate(EvidenceReport report, OutputStream outputFile, IExporter exporter) {
+	public static void generate(EvidenceReport report, OutputStream outputFile, IExporter exporter) throws GeneratorEvidenceReportException {
 		
 		try {
 			
@@ -52,7 +52,7 @@ public class GeneratorEvidenceReport {
 			parameters.put("LABEL_COD_PROJECT", getProperty("label.cod.project"));
 			parameters.put("LABEL_TESTER", getProperty("label.tester"));
 			parameters.put("LOGO_CUSTOMER", getProperty("path.logo.customer"));
-			parameters.put("LOGO_CORPORATION", getProperty("path.logo.company"));
+			parameters.put("LOGO_COMPANY", getProperty("path.logo.company"));
 			parameters.put("LABEL_DATE", report.getDate());
 			parameters.put("LABEL_SCENE", report.getScene());
 			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().result());
@@ -95,7 +95,7 @@ public class GeneratorEvidenceReport {
 		return StringUtils.isBlank(value) ? StringUtils.EMPTY : value.trim();
 	}
 	
-	private static void initPropertiesReportConfig() {
+	private static void initPropertiesReportConfig() throws IllegalStateException {
 		properties_report_config = new Properties();
 		try {
 			properties_report_config.load(new FileInputStream("reportconfig.properties"));

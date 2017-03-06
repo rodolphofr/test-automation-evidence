@@ -12,13 +12,14 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotConfigurationTypeFile;
+import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotConfigurationTypeBase64;
+import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotConfigurationType;
 
 public class DemoTest {
 
 	private List<Evidence> evidences;
 	private EvidenceReport newReport;
-	private static EvidenceLog log;
+	private static EvidenceFactory factory;
 	private static FirefoxDriver driver; 
 	
 	@Rule
@@ -28,7 +29,7 @@ public class DemoTest {
 	public static void init() {
 		System.setProperty("webdriver.gecko.driver", "C:\\driver\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		log = new EvidenceLog(new SimpleScreenshotConfigurationTypeFile(driver));
+		factory = new EvidenceFactory(new SimpleScreenshotConfigurationType(driver));
 	}
 	
 	@Before
@@ -41,7 +42,7 @@ public class DemoTest {
 	@Test
 	public void deveAcessarPaginaSeleniumOrg() {
 		newReport.setScene(testName.getMethodName());
-		evidences.add(log.passed("Tirado foto"));
+		evidences.add(factory.passed("Tirado foto"));
 	}
 	
 	@After

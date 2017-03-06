@@ -12,19 +12,11 @@ public class Evidence {
 	private File imageFile;
 	private EvidenceStatus status;
 	private String description;
-	private String imageBase64;
 	
 	public Evidence(String description, EvidenceStatus status, File imageFile, Date hour) {
 		this.description = description;
 		this.status = status;
 		this.imageFile = imageFile;
-		this.hour = hour;
-	}
-	
-	public Evidence(String description, EvidenceStatus status, String imageBase64, Date hour) {
-		this.status = status;
-		this.description = description;
-		this.imageBase64 = imageBase64;
 		this.hour = hour;
 	}
 	
@@ -44,8 +36,4 @@ public class Evidence {
 		return hour;
 	}
 
-	public String getImageBase64() {
-		return imageBase64;
-	}
-	
 }
