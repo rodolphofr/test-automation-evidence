@@ -12,7 +12,6 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotConfigurationTypeBase64;
 import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotConfigurationType;
 
 public class DemoTest {
