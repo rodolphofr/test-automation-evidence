@@ -12,7 +12,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotConfigurationType;
+import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotType;
 
 public class DemoTest {
 
@@ -28,7 +28,7 @@ public class DemoTest {
 	public static void init() {
 		System.setProperty("webdriver.gecko.driver", "C:\\driver\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		factory = new EvidenceFactory(new SimpleScreenshotConfigurationType(driver));
+		factory = new EvidenceFactory(new SimpleScreenshotType(driver));
 	}
 	
 	@Before

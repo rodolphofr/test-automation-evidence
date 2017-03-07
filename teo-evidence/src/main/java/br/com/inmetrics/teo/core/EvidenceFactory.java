@@ -5,26 +5,26 @@ package br.com.inmetrics.teo.core;
 
 import java.util.Date;
 
-import br.com.inmetrics.teo.core.screenshot.AbstractScreenshotConfigurationType;
+import br.com.inmetrics.teo.core.screenshot.AbstractScreenshotType;
 
 public class EvidenceFactory {
 
-	private AbstractScreenshotConfigurationType screenshot;
+	private AbstractScreenshotType screenshotType;
 
-	public EvidenceFactory(AbstractScreenshotConfigurationType screenshotType) {
-		this.screenshot = screenshotType;
+	public EvidenceFactory(AbstractScreenshotType screenshotType) {
+		this.screenshotType = screenshotType;
 	}
 
 	public Evidence passed(String description) {
-		return new Evidence(description, EvidenceStatus.PASSED, screenshot.takeAPicture(), new Date());
+		return new Evidence(description, EvidenceStatus.PASSED, screenshotType.takeAPicture(), new Date());
 	}
 
 	public Evidence fail(String description) {
-		return new Evidence(description, EvidenceStatus.FAIL, screenshot.takeAPicture(), new Date());
+		return new Evidence(description, EvidenceStatus.FAIL, screenshotType.takeAPicture(), new Date());
 	}
 
 	public Evidence info(String description) {
-		return new Evidence(description, EvidenceStatus.INFO, screenshot.takeAPicture(), new Date());
+		return new Evidence(description, EvidenceStatus.INFO, screenshotType.takeAPicture(), new Date());
 	}
 
 }

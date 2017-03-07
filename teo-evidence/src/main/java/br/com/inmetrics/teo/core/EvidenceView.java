@@ -20,16 +20,7 @@ public class EvidenceView {
 	}
 	
 	public String getStatus() {
-		switch (evidence.getEvidenceStatus()) {
-		case FAIL:
-			return EvidenceStatus.FAIL.name(); 
-		case INFO:
-			return EvidenceStatus.PASSED.name();
-		case PASSED:
-			return EvidenceStatus.INFO.name();
-		default:
-			return null;
-		}
+		return evidence.getEvidenceStatus().name();
 	}
 	
 	public String getHour() {
@@ -39,6 +30,10 @@ public class EvidenceView {
 	
 	public File getImage() {
 		return evidence.getImage();
+	}
+	
+	public void setEvidence(Evidence evidence) {
+		this.evidence = evidence;
 	}
 	
 }
