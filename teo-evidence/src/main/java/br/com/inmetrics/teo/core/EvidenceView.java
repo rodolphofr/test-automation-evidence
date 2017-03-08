@@ -24,8 +24,7 @@ public class EvidenceView {
 	}
 	
 	public String getHour() {
-		SimpleDateFormat sdf = new SimpleDateFormat("HH:mm:ss");
-		return sdf.format(evidence.getHour());
+		return new SimpleDateFormat("HH:mm:ss").format(evidence.getHour());
 	}
 	
 	public File getImage() {

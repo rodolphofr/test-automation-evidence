@@ -17,6 +17,7 @@ import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 import br.com.inmetrics.teo.utils.EvidenceViewUtils;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
@@ -30,15 +31,15 @@ public class GeneratorEvidenceReport {
 		initPropertiesReportConfig();
 	}
 	
-	public static void generate(EvidenceReport report, OutputStream outputFile) {
+	public static void generate(EvidenceReport report, OutputStream outputFile) throws GeneratorEvidenceReportException {
 		generate(report, outputFile, getExporter());
 	}
 	
-	public static void generate(EvidenceReport report, IExporter exporter) {
+	public static void generate(EvidenceReport report, IExporter exporter) throws GeneratorEvidenceReportException {
 		generate(report, getDefaultOutputFile(report.getScene()), exporter);
 	}
 	
-	public static void generate(EvidenceReport report) {
+	public static void generate(EvidenceReport report) throws GeneratorEvidenceReportException {
 		generate(report, getDefaultOutputFile(report.getScene()), getExporter());
 	}
 
@@ -68,7 +69,7 @@ public class GeneratorEvidenceReport {
 		
 	}
 
-	private static FileOutputStream getDefaultOutputFile(String scene) {
+	private static FileOutputStream getDefaultOutputFile(String scene) throws GeneratorEvidenceReportException {
 		
 		try {
 			String destination = getProperty("custom.destination.evidence").concat("/") 

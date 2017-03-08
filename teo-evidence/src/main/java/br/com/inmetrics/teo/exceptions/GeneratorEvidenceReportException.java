@@ -11,5 +11,9 @@ public class GeneratorEvidenceReportException extends RuntimeException {
 	public GeneratorEvidenceReportException(String message, Throwable e) {
 		super(message, e);
 	}
+
+	public GeneratorEvidenceReportException(Throwable e) {
+		super(e);
+	}
 	
 }

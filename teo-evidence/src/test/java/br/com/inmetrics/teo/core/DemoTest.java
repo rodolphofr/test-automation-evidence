@@ -18,7 +18,7 @@ public class DemoTest {
 
 	private List<Evidence> evidences;
 	private EvidenceReport newReport;
-	private static EvidenceFactory factory;
+	private static EvidenceLog log;
 	private static FirefoxDriver driver; 
 	
 	@Rule
@@ -28,7 +28,7 @@ public class DemoTest {
 	public static void init() {
 		System.setProperty("webdriver.gecko.driver", "C:\\driver\\geckodriver.exe");
 		driver = new FirefoxDriver();
-		factory = new EvidenceFactory(new SimpleScreenshotType(driver));
+		log = new EvidenceLog(new SimpleScreenshotType(driver));
 	}
 	
 	@Before
@@ -41,7 +41,7 @@ public class DemoTest {
 	@Test
 	public void deveAcessarPaginaSeleniumOrg() {
 		newReport.setScene(testName.getMethodName());
-		evidences.add(factory.passed("Tirado foto"));
+		evidences.add(log.passed("Screenshot"));
 	}
 	
 	@After

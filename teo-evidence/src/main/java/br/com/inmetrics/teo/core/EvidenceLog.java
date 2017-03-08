@@ -7,11 +7,11 @@ import java.util.Date;
 
 import br.com.inmetrics.teo.core.screenshot.AbstractScreenshotType;
 
-public class EvidenceFactory {
+public class EvidenceLog {
 
 	private AbstractScreenshotType screenshotType;
 
-	public EvidenceFactory(AbstractScreenshotType screenshotType) {
+	public EvidenceLog(AbstractScreenshotType screenshotType) {
 		this.screenshotType = screenshotType;
 	}
 
