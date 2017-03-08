@@ -8,9 +8,9 @@ import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 
 public class JRExporterFactory {
 
-	public static IExporter getExporterInstance(String fileExtensionReport) {
+	public static IExporter getExporterInstance(String extension) {
 		
-		switch (fileExtensionReport.toLowerCase()) {
+		switch (extension.toLowerCase()) {
 			case "docx":
 				return new DocxExporter();
 			case "pdf":
@@ -18,8 +18,7 @@ public class JRExporterFactory {
 			case "html":
 				return new HtmlExporter();
 			default:
-				throw new GeneratorEvidenceReportException("A exteção do arquivo de saída do relatório é inválida. "
-						+ "Verique o valor informado no arquivo reportconfig.properties.");
+				throw new GeneratorEvidenceReportException("Ainda nÃ£o foi implementado Exporter para a extensÃ£o [" + extension + "].");
 		}
 		
 	}
