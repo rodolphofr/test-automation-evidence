@@ -4,7 +4,11 @@ import java.util.List;
 
 import br.com.inmetrics.teo.core.Evidence;
 import br.com.inmetrics.teo.core.EvidenceStatus;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class TestCaseResult {
 
 	private List<Evidence> evidences;

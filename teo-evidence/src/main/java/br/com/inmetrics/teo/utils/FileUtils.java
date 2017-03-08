@@ -5,7 +5,11 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Base64;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class FileUtils {
 
 	public static File base64ToTempFile(String base64) {

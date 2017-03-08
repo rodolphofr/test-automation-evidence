@@ -7,6 +7,11 @@ import java.util.Date;
 
 import br.com.inmetrics.teo.core.screenshot.AbstractScreenshotType;
 
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class EvidenceLog {
 
 	private AbstractScreenshotType screenshotType;

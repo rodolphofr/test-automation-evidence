@@ -2,7 +2,11 @@ package br.com.inmetrics.teo.core;
 
 import java.io.File;
 import java.text.SimpleDateFormat;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class EvidenceView {
 
 	private Evidence evidence;

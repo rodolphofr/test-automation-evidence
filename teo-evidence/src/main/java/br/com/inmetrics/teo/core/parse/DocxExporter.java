@@ -7,7 +7,11 @@ import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
 import net.sf.jasperreports.export.SimpleExporterInput;
 import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class DocxExporter implements IExporter {
 
 	@Override

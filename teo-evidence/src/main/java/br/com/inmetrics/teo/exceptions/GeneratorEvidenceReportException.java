@@ -1,5 +1,9 @@
 package br.com.inmetrics.teo.exceptions;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class GeneratorEvidenceReportException extends RuntimeException {
 
 	private static final long serialVersionUID = -8726267979423664897L;

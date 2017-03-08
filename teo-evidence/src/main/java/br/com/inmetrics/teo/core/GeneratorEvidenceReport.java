@@ -17,11 +17,15 @@ import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 import br.com.inmetrics.teo.utils.EvidenceViewUtils;
 import net.sf.jasperreports.engine.JRDataSource;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class GeneratorEvidenceReport {
 	
 	private static Properties properties_report_config;

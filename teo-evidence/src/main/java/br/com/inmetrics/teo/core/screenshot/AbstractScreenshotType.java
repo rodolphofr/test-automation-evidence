@@ -5,7 +5,11 @@ import java.io.File;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public abstract class AbstractScreenshotType {
 	
 	protected WebDriver driver;

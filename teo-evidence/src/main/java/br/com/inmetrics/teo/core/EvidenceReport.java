@@ -6,7 +6,9 @@ import java.util.List;
 import br.com.inmetrics.teo.core.result.TestCaseResult;
 
 /**
- * @author Rodolpho F. Rodrigues
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
  */
 public class EvidenceReport {
 

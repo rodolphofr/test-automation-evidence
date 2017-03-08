@@ -7,7 +7,9 @@ import br.com.inmetrics.teo.core.Evidence;
 import br.com.inmetrics.teo.core.EvidenceView;
 
 /**
- * @author Rodolpho F. Rodrigues
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
  */
 public class EvidenceViewUtils {
 

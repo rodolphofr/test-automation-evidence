@@ -13,7 +13,11 @@ import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotType;
-
+/**
+ * 
+ * @author Rodolpho F. Rodrigues (@Rod)
+ *
+ */
 public class DemoTest {
 
 	private List<Evidence> evidences;
