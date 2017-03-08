@@ -68,7 +68,7 @@ public class GeneratorEvidenceReport {
 			exporter.export(jasperPrint, outputFile);
 			
 		} catch (JRException e) {
-			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar gerar relatório do jasper: " + e.getMessage(), e);
+			throw new GeneratorEvidenceReportException("ExceÃ§Ã£o ocorreu ao tentar gerar relatÃ³rio do jasper: " + e.getMessage(), e);
 		} 
 		
 	}
@@ -77,13 +77,13 @@ public class GeneratorEvidenceReport {
 		
 		try {
 			String destination = getProperty("custom.destination.evidence").concat("/") 
-																	       .concat(scene)
-																	       .concat(".")
-																	       .concat(getExtensionReport());
+										       .concat(scene)
+										       .concat(".")
+										       .concat(getExtensionReport());
 			return new FileOutputStream(destination);
 		} catch (FileNotFoundException e) {
-			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar criar arquivo de evidências. "
-					+ "Caminho do arquivo pode estar inválido: " + e.getMessage(), e);
+			throw new GeneratorEvidenceReportException("ExceÃ§Ã£o ocorreu ao tentar criar arquivo de evidÃªncias. "
+					+ "Caminho do arquivo pode estar invÃ¡lido: " + e.getMessage(), e);
 		}
 	}
 	
@@ -105,7 +105,7 @@ public class GeneratorEvidenceReport {
 		try {
 			properties_report_config.load(new FileInputStream("reportconfig.properties"));
 		} catch (IOException e) {
-			throw new IllegalStateException("Exceção inesperada ocorreu ao carregar arquivo properties [reportconfig.properties]", e);
+			throw new IllegalStateException("ExceÃ§Ã£o inesperada ocorreu ao carregar arquivo properties [reportconfig.properties]", e);
 		}
 	}
 	
