@@ -12,6 +12,7 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
+import br.com.inmetrics.teo.core.result.TestCaseResult;
 import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotType;
 /**
  * 
@@ -39,8 +40,8 @@ public class DemoTest {
 	public void setUp() {
 		driver.get("http://www.seleniumhq.org/");
 		evidences = new ArrayList<Evidence>();
-		newReport = new EvidenceReport(evidences, new Date());
-	}
+		newReport = new EvidenceReport.Builder().withEvidences(evidences).withDate(new Date()).build();
+	}		
 	
 	@Test
 	public void deveAcessarPaginaSeleniumOrg() {
@@ -51,6 +52,7 @@ public class DemoTest {
 	@After
 	public void tearDown() {
 		driver.quit();
+		newReport.setTestCaseResult(new TestCaseResult(evidences));
 		GeneratorEvidenceReport.generate(newReport);
 	}
 
