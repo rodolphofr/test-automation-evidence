@@ -1,9 +1,10 @@
 package br.com.inmetrics.teo.core.factory;
 
 import br.com.inmetrics.teo.core.parse.IExporter;
-import br.com.inmetrics.teo.core.parse.DocxExporter;
-import br.com.inmetrics.teo.core.parse.HtmlExporter;
-import br.com.inmetrics.teo.core.parse.PdfExporter;
+import br.com.inmetrics.teo.core.parse.SimpleDocxExporter;
+import br.com.inmetrics.teo.core.parse.SimpleHtmlExporter;
+import br.com.inmetrics.teo.core.parse.SimplePdfExporter;
+import br.com.inmetrics.teo.core.parse.SimpleXlsxExporter;
 import br.com.inmetrics.teo.exceptions.GeneratorEvidenceReportException;
 
 public class JRExporterFactory {
@@ -12,11 +13,13 @@ public class JRExporterFactory {
 		
 		switch (fileExtensionReport.toLowerCase()) {
 			case "docx":
-				return new DocxExporter();
+				return new SimpleDocxExporter();
 			case "pdf":
-				return new PdfExporter();
+				return new SimplePdfExporter();
 			case "html":
-				return new HtmlExporter();
+				return new SimpleHtmlExporter();
+			case "xlsx":
+				return new SimpleXlsxExporter();
 			default:
 				throw new GeneratorEvidenceReportException("A exteção do arquivo de saída do relatório é inválida. "
 						+ "Verique o valor informado no arquivo reportconfig.properties.");

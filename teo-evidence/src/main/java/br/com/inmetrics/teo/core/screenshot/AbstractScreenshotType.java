@@ -2,7 +2,6 @@ package br.com.inmetrics.teo.core.screenshot;
 
 import java.io.File;
 
-import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 /**
@@ -24,10 +23,6 @@ public abstract class AbstractScreenshotType {
 	
 	public TakesScreenshot getTakesScreenshot() {
 		return takesScreenshot;
-	}
-	
-	protected File screenshotAsFile() {
-		return getTakesScreenshot().getScreenshotAs(OutputType.FILE);
 	}
 	
 }

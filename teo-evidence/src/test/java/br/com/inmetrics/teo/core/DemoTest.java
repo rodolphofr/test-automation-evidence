@@ -1,8 +1,6 @@
 package br.com.inmetrics.teo.core;
 
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
@@ -12,7 +10,6 @@ import org.junit.Test;
 import org.junit.rules.TestName;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-import br.com.inmetrics.teo.core.result.TestCaseResult;
 import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotType;
 /**
  * 
@@ -21,39 +18,50 @@ import br.com.inmetrics.teo.core.screenshot.SimpleScreenshotType;
  */
 public class DemoTest {
 
-	private List<Evidence> evidences;
-	private EvidenceReport newReport;
-	private static EvidenceLog log;
+	private TestCase testCase;
 	private static FirefoxDriver driver; 
+	private static EvidenceLog log;
 	
 	@Rule
 	public TestName testName = new TestName();
 	
 	@BeforeClass
 	public static void init() {
-		System.setProperty("webdriver.gecko.driver", "C:\\driver\\geckodriver.exe");
-		driver = new FirefoxDriver();
-		log = new EvidenceLog(new SimpleScreenshotType(driver));
-	}
+		System.setProperty("webdriver.gecko.driver", "/driver/geckodriver.exe");
+	}	
 	
 	@Before
 	public void setUp() {
+		driver = new FirefoxDriver();
+		log = new EvidenceLog(new SimpleScreenshotType(driver));
 		driver.get("http://www.seleniumhq.org/");
-		evidences = new ArrayList<Evidence>();
-		newReport = new EvidenceReport.Builder().withEvidences(evidences).withDate(new Date()).build();
+		testCase = new TestCase();
 	}		
 	
 	@Test
-	public void deveAcessarPaginaSeleniumOrg() {
-		newReport.setScene(testName.getMethodName());
-		evidences.add(log.passed("Screenshot"));
+	public void testCase1() {
+		testCase.setScene(testName.getMethodName());
+		testCase.putEvidence(log.passed("screenshot 1"));
+		testCase.putEvidence(log.passed("screenshot 2"));
+		testCase.putEvidence(log.fail("screenshot 3"));
+		testCase.putEvidence(log.info("screenshot 4"));
+		testCase.putEvidence(log.info("screenshot 5"));
+	}
+	
+	@Test
+	public void testCase2() {
+		testCase.setScene(testName.getMethodName());
+		testCase.putEvidence(log.passed("screenshot 1"));
+		testCase.putEvidence(log.passed("screenshot 2"));
+		testCase.putEvidence(log.fail("screenshot 3"));
+		testCase.putEvidence(log.info("screenshot 4"));
+		testCase.putEvidence(log.info("screenshot 5"));
 	}
 	
 	@After
 	public void tearDown() {
 		driver.quit();
-		newReport.setTestCaseResult(new TestCaseResult(evidences));
-		GeneratorEvidenceReport.generate(newReport);
+		GeneratorEvidenceReport.generate(new EvidenceReport(testCase, new Date()));
 	}
 
 }

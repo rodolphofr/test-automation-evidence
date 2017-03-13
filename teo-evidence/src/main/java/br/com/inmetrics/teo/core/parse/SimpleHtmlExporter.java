@@ -11,7 +11,7 @@ import net.sf.jasperreports.export.SimpleHtmlExporterOutput;
  * @author Rodolpho F. Rodrigues (@Rod)
  *
  */
-public class HtmlExporter implements IExporter {
+public class SimpleHtmlExporter implements IExporter {
 
 	@Override
 	public void export(JasperPrint print, OutputStream out) throws JRException {

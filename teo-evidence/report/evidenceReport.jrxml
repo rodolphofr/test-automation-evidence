@@ -1,26 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="evidenceReport" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="00e54e6f-7e45-4cd9-a957-e6193053f66a">
-	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.zoom" value="0.75"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="39"/>
 	<style name="style_status">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[new Boolean($P{LABEL_STATUS_CT}.equalsIgnoreCase("Passed"))]]></conditionExpression>
-			<style forecolor="#00AB21"/>
-		</conditionalStyle>
-		<conditionalStyle>
-			<conditionExpression><![CDATA[new Boolean($P{LABEL_STATUS_CT}.equalsIgnoreCase("Fail"))]]></conditionExpression>
+			<conditionExpression><![CDATA[new Boolean($P{LABEL_STATUS_CT}.trim().equalsIgnoreCase("FAIL"))]]></conditionExpression>
 			<style forecolor="#FF0000"/>
 		</conditionalStyle>
 	</style>
 	<style name="style_step">
 		<conditionalStyle>
-			<conditionExpression><![CDATA[( $F{status}.equalsIgnoreCase("Passed") ? true : false )]]></conditionExpression>
-			<style forecolor="#00FF00"/>
+			<conditionExpression><![CDATA[new Boolean($F{status}.equalsIgnoreCase("FAIL"))]]></conditionExpression>
+			<style forecolor="#FF0000"/>
 		</conditionalStyle>
 		<conditionalStyle>
-			<conditionExpression><![CDATA[new Boolean($F{status}.equalsIgnoreCase("Fail"))]]></conditionExpression>
-			<style forecolor="#FF0000"/>
+			<conditionExpression><![CDATA[new Boolean($F{status}.equalsIgnoreCase("INFO"))]]></conditionExpression>
+			<style forecolor="#66C3F5"/>
 		</conditionalStyle>
 	</style>
 	<parameter name="LABEL_PROJECT" class="java.lang.String" isForPrompting="false"/>
@@ -31,7 +27,10 @@
 	<parameter name="LABEL_DATE" class="java.util.Date" isForPrompting="false"/>
 	<parameter name="LABEL_STATUS_CT" class="java.lang.String" isForPrompting="false"/>
 	<parameter name="LOGO_CUSTOMER" class="java.lang.String" isForPrompting="false"/>
-	<parameter name="LOGO_CORPORATION" class="java.lang.String"/>
+	<parameter name="LOGO_CORPORATION" class="java.lang.String" isForPrompting="false"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Inmetrics\\git\\test-automation-evidence\\teo-evidence\\report\\"]]></defaultValueExpression>
+	</parameter>
 	<field name="hour" class="java.lang.String"/>
 	<field name="image" class="java.io.File"/>
 	<field name="description" class="java.lang.String"/>
@@ -77,14 +76,16 @@
 				<textFieldExpression><![CDATA[$P{LABEL_TESTER}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="###0.00" isBlankWhenNull="true">
-				<reportElement positionType="FixRelativeToBottom" x="81" y="78" width="149" height="20" isRemoveLineWhenBlank="true" uuid="702c1c37-6353-412a-9270-b2a65b409d9a"/>
+				<reportElement positionType="FixRelativeToBottom" x="81" y="78" width="149" height="20" isRemoveLineWhenBlank="true" uuid="702c1c37-6353-412a-9270-b2a65b409d9a">
+					<printWhenExpression><![CDATA[$P{LABEL_DATE} != null]]></printWhenExpression>
+				</reportElement>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isPdfEmbedded="false"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.text.SimpleDateFormat("dd/MM/yyyy HH:mm").format($P{LABEL_DATE})]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement style="style_status" positionType="FixRelativeToBottom" mode="Opaque" x="81" y="99" width="149" height="20" isRemoveLineWhenBlank="true" uuid="e25b0ebe-3a81-489b-9fb4-29ef4241b0ad"/>
+				<reportElement style="style_status" positionType="FixRelativeToBottom" mode="Opaque" x="81" y="99" width="149" height="20" isRemoveLineWhenBlank="true" forecolor="#00AB21" uuid="e25b0ebe-3a81-489b-9fb4-29ef4241b0ad"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Calibri" size="12" isBold="true" isPdfEmbedded="false"/>
 				</textElement>
@@ -192,7 +193,7 @@
 				<textFieldExpression><![CDATA[$F{description}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement style="style_step" mode="Opaque" x="449" y="10" width="76" height="22" forecolor="#000000" uuid="28bfbc7e-5b82-4c2a-a975-95a2c701a14a"/>
+				<reportElement style="style_step" mode="Opaque" x="449" y="10" width="76" height="22" forecolor="#00AB21" uuid="28bfbc7e-5b82-4c2a-a975-95a2c701a14a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Calibri" size="11" isBold="true" pdfFontName="Helvetica-Bold" isPdfEmbedded="false"/>
 				</textElement>

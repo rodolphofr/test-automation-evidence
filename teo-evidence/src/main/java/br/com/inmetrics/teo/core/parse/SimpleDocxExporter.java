@@ -12,7 +12,8 @@ import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
  * @author Rodolpho F. Rodrigues (@Rod)
  *
  */
-public class DocxExporter implements IExporter {
+
+public class SimpleDocxExporter implements IExporter {
 
 	@Override
 	public void export(JasperPrint print, OutputStream out) throws JRException {

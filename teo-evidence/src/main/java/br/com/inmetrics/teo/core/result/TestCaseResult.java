@@ -17,7 +17,7 @@ public class TestCaseResult {
 		this.evidences = evidences;
 	}
 	
-	private boolean checkFail() {
+	private boolean hasFailEvidence() {
 		return evidences.stream()
 						.filter((e) -> e.getEvidenceStatus() == EvidenceStatus.FAIL)
 						.findFirst()
@@ -25,7 +25,11 @@ public class TestCaseResult {
 	}
 
 	public String result() {
-		return checkFail() ? TestResult.FAIL.name() : TestResult.PASSED.name(); 
+		return !hasFailEvidence() ? TestResult.PASSED.name() : TestResult.FAIL.name(); 
 	}
+	
+	public boolean wasSuccessful() {
+		return !hasFailEvidence();
+	}	
 	
 }

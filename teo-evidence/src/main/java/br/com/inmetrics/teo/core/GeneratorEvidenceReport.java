@@ -4,12 +4,14 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import br.com.inmetrics.teo.core.factory.JRExporterFactory;
 import br.com.inmetrics.teo.core.parse.IExporter;
@@ -28,27 +30,32 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
  */
 public class GeneratorEvidenceReport {
 	
+	private static Logger LOGGER = LoggerFactory.getLogger(GeneratorEvidenceReport.class);
 	private static Properties properties_report_config;
 	private static final String PATH_JR_FILE = "report/evidenceReport.jasper";
-
+	
 	static {
-		initPropertiesReportConfig();
-	}
-	
-	public static void generate(EvidenceReport report, OutputStream outputFile) throws GeneratorEvidenceReportException {
-		generate(report, outputFile, getExporter());
-	}
-	
-	public static void generate(EvidenceReport report, IExporter exporter) throws GeneratorEvidenceReportException {
-		generate(report, getDefaultOutputFile(report.getScene()), exporter);
+		try {
+			LOGGER.info("Tentando carregar arquivo [reportconfig.properties].");
+			initPropertiesReportConfig();
+			LOGGER.info("[reportconfig.properties] foi carregado com sucesso.");
+		} catch (IllegalStateException | FileNotFoundException e) {
+			LOGGER.error("Erro ao carregar arquivo [reportconfig.properties]", e);
+		}
 	}
 	
 	public static void generate(EvidenceReport report) throws GeneratorEvidenceReportException {
-		generate(report, getDefaultOutputFile(report.getScene()), getExporter());
+		generate(report, JRExporterFactory.getExporterInstance(getExtensionReport()));
 	}
 
-	public static void generate(EvidenceReport report, OutputStream outputFile, IExporter exporter) throws GeneratorEvidenceReportException {
+	public static void generate(EvidenceReport report, IExporter exporter) throws GeneratorEvidenceReportException {
 		
+		TestCase testCase = report.getTestCase();
+		
+		String destination = getProperty("custom.destination.evidence").concat("/") 
+																       .concat(testCase.getScene())
+																       .concat(".")
+																       .concat(getExtensionReport());
 		try {
 			
 			Map<String, Object> parameters = new HashMap<String, Object>();
@@ -59,38 +66,27 @@ public class GeneratorEvidenceReport {
 			parameters.put("LOGO_CUSTOMER", getProperty("path.logo.customer"));
 			parameters.put("LOGO_COMPANY", getProperty("path.logo.company"));
 			parameters.put("LABEL_DATE", report.getDate());
-			parameters.put("LABEL_SCENE", report.getScene());
-			parameters.put("LABEL_STATUS_CT", report.getTestCaseResult().result());
+			parameters.put("LABEL_SCENE", testCase.getScene());
+			parameters.put("LABEL_STATUS_CT", testCase.getTestCaseResult().result());
 			
-			JRDataSource dataSource = new JRBeanCollectionDataSource(EvidenceViewUtils.convertToList(report.getEvidences()));
+			List<EvidenceView> evidences = EvidenceViewUtils.convertToList(testCase.getEvidences());
+			
+			JRDataSource dataSource = new JRBeanCollectionDataSource(evidences);
 			JasperPrint jasperPrint = JasperFillManager.fillReport(PATH_JR_FILE, parameters, dataSource);
 			
-			exporter.export(jasperPrint, outputFile);
+			LOGGER.info("Iniciado geração de relatório para o formato " + getExtensionReport());
+			exporter.export(jasperPrint, new FileOutputStream(destination));
+			LOGGER.info("Exportação finalizada");
 			
 		} catch (JRException e) {
-			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar gerar relatório do jasper: " + e.getMessage(), e);
+			throw new GeneratorEvidenceReportException("Erro ocorreu ao gerar relatório do jasper", e);
+		} catch (FileNotFoundException e) {
+			throw new GeneratorEvidenceReportException("Erro ocorreu ao tentar criar arquivo de evidências. "
+					+ "Caminho do arquivo pode estar inválido", e);
 		} 
 		
 	}
 
-	private static FileOutputStream getDefaultOutputFile(String scene) throws GeneratorEvidenceReportException {
-		
-		try {
-			String destination = getProperty("custom.destination.evidence").concat("/") 
-																	       .concat(scene)
-																	       .concat(".")
-																	       .concat(getExtensionReport());
-			return new FileOutputStream(destination);
-		} catch (FileNotFoundException e) {
-			throw new GeneratorEvidenceReportException("Exceção ocorreu ao tentar criar arquivo de evidências. "
-					+ "Caminho do arquivo pode estar inválido: " + e.getMessage(), e);
-		}
-	}
-	
-	private static IExporter getExporter() {
-		return JRExporterFactory.getExporterInstance(getExtensionReport());
-	}
-	
 	private static String getExtensionReport() {
 		return getProperty("file.extension.report");
 	}
@@ -100,12 +96,14 @@ public class GeneratorEvidenceReport {
 		return StringUtils.isBlank(value) ? StringUtils.EMPTY : value.trim();
 	}
 	
-	private static void initPropertiesReportConfig() throws IllegalStateException {
+	private static void initPropertiesReportConfig() throws IllegalStateException, FileNotFoundException {
 		properties_report_config = new Properties();
 		try {
 			properties_report_config.load(new FileInputStream("reportconfig.properties"));
+		} catch (FileNotFoundException e) { 
+			throw new FileNotFoundException("O arquivo [reportconfig.properties] não foi encontrado. Adicione-o a raiz do seu projeto.");
 		} catch (IOException e) {
-			throw new IllegalStateException("Exceção inesperada ocorreu ao carregar arquivo properties [reportconfig.properties]", e);
+			throw new IllegalStateException("Exceção inesperada ocorreu ao carregar arquivo [reportconfig.properties]", e);
 		}
 	}
 	
