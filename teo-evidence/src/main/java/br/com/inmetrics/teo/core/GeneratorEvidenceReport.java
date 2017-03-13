@@ -103,7 +103,7 @@ public class GeneratorEvidenceReport {
 		} catch (FileNotFoundException e) { 
 			throw new FileNotFoundException("O arquivo [reportconfig.properties] não foi encontrado. Adicione-o a raiz do seu projeto.");
 		} catch (IOException e) {
-			throw new IllegalStateException("Exceção inesperada ocorreu ao carregar arquivo [reportconfig.properties]", e);
+			throw new IllegalStateException("Exceção inesperada ocorreu ao carregar arquivo properties [reportconfig.properties]", e);
 		}
 	}
 	
