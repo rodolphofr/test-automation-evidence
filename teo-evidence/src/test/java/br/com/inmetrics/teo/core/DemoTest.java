@@ -28,12 +28,12 @@ public class DemoTest {
 	@BeforeClass
 	public static void init() {
 		System.setProperty("webdriver.gecko.driver", "/driver/geckodriver.exe");
+		driver = new FirefoxDriver();
+		log = new EvidenceLog(new SimpleScreenshotType(driver));
 	}	
 	
 	@Before
 	public void setUp() {
-		driver = new FirefoxDriver();
-		log = new EvidenceLog(new SimpleScreenshotType(driver));
 		driver.get("http://www.seleniumhq.org/");
 		testCase = new TestCase();
 	}		
@@ -43,17 +43,7 @@ public class DemoTest {
 		testCase.setScene(testName.getMethodName());
 		testCase.putEvidence(log.passed("screenshot 1"));
 		testCase.putEvidence(log.passed("screenshot 2"));
-		testCase.putEvidence(log.fail("screenshot 3"));
-		testCase.putEvidence(log.info("screenshot 4"));
-		testCase.putEvidence(log.info("screenshot 5"));
-	}
-	
-	@Test
-	public void testCase2() {
-		testCase.setScene(testName.getMethodName());
-		testCase.putEvidence(log.passed("screenshot 1"));
-		testCase.putEvidence(log.passed("screenshot 2"));
-		testCase.putEvidence(log.fail("screenshot 3"));
+		testCase.putEvidence(log.info("screenshot 3"));
 		testCase.putEvidence(log.info("screenshot 4"));
 		testCase.putEvidence(log.info("screenshot 5"));
 	}
