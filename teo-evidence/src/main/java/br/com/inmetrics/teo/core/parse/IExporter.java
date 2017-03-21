@@ -11,4 +11,5 @@ import net.sf.jasperreports.engine.JasperPrint;
  */
 public interface IExporter {
 	void export(JasperPrint jasperPrint, OutputStream outputStream) throws JRException;
+	Extension extensionFile();
 }

@@ -20,6 +20,11 @@ public class SimpleHtmlExporter implements IExporter {
 		exporter.setExporterOutput(new SimpleHtmlExporterOutput(out));
 		exporter.exportReport();
 	}
+
+	@Override
+	public Extension extensionFile() {
+		return Extension.HTML;
+	}
 	
 
 }

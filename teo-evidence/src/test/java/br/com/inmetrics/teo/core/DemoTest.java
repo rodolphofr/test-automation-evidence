@@ -51,7 +51,7 @@ public class DemoTest {
 	@After
 	public void tearDown() {
 		driver.quit();
-		GeneratorEvidenceReport.generate(new EvidenceReport(testCase, new Date()));
+		GeneratorEvidenceReport.generate(testCase);
 	}
 
 }

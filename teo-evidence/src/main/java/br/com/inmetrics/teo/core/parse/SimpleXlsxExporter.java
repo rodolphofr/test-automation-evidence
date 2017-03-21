@@ -18,4 +18,9 @@ public class SimpleXlsxExporter implements IExporter {
 		exporter.exportReport();
 	}
 
+	@Override
+	public Extension extensionFile() {
+		return Extension.XLSX;
+	}
+
 }

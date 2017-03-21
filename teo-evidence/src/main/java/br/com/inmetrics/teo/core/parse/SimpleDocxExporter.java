@@ -23,5 +23,10 @@ public class SimpleDocxExporter implements IExporter {
 		exporter.exportReport();
 	}
 
+	@Override
+	public Extension extensionFile() {
+		return Extension.DOCX;
+	}
+
 
 }
