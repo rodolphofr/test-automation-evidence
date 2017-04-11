@@ -1,7 +1,5 @@
 package br.com.inmetrics.teo.core;
 
-import java.util.Date;
-
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -27,7 +25,7 @@ public class DemoTest {
 	
 	@BeforeClass
 	public static void init() {
-		System.setProperty("webdriver.gecko.driver", "/driver/geckodriver.exe");
+		System.setProperty("webdriver.gecko.driver", "/mozila-driver/geckodriver.exe");
 		driver = new FirefoxDriver();
 		log = new EvidenceLog(new SimpleScreenshotType(driver));
 	}	
@@ -41,6 +39,8 @@ public class DemoTest {
 	@Test
 	public void testCase1() {
 		testCase.setScene(testName.getMethodName());
+		
+		
 		testCase.putEvidence(log.passed("screenshot 1"));
 		testCase.putEvidence(log.passed("screenshot 2"));
 		testCase.putEvidence(log.info("screenshot 3"));
